@@ -1,12 +1,12 @@
 /**
  * Copyright 2013 Nils Assbeck, Guersel Ayaz and Michael Zoech
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -229,18 +229,18 @@ public class MainActivityBk extends SessionActivity implements CameraListener {
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
-        case DIALOG_PROGRESS:
-            return ProgressDialog.show(this, "", "Generating information. Please wait...", true);
-        case DIALOG_NO_CAMERA:
-            AlertDialog.Builder b = new AlertDialog.Builder(this);
-            b.setTitle(R.string.dialog_no_camera_title);
-            b.setMessage(R.string.dialog_no_camera_message);
-            b.setNeutralButton(R.string.ok, new OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
-            return b.create();
+            case DIALOG_PROGRESS:
+                return ProgressDialog.show(this, "", "Generating information. Please wait...", true);
+            case DIALOG_NO_CAMERA:
+                AlertDialog.Builder b = new AlertDialog.Builder(this);
+                b.setTitle(R.string.dialog_no_camera_title);
+                b.setMessage(R.string.dialog_no_camera_message);
+                b.setNeutralButton(R.string.ok, new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                return b.create();
         }
         return super.onCreateDialog(id);
     }
@@ -284,7 +284,7 @@ public class MainActivityBk extends SessionActivity implements CameraListener {
                         Intent sendIntent = new Intent(Intent.ACTION_SEND);
                         sendIntent.setType("text/plain");
                         sendIntent.putExtra(Intent.EXTRA_SUBJECT, "RYC USB Feedback");
-                        sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "PUT_EMAIL_HERE" });
+                        sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"PUT_EMAIL_HERE"});
                         if (out != null && camera != null) {
                             sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + out.toString()));
                             sendIntent.putExtra(Intent.EXTRA_TEXT, "Any problems or feature whishes? Let us know: ");
@@ -396,8 +396,10 @@ public class MainActivityBk extends SessionActivity implements CameraListener {
     @Override
     public void onCapturedPictureReceived(int objectHandle, String filename, Bitmap thumbnail, Bitmap bitmap) {
         if (thumbnail != null) {
+            Log.d("카메라", filename);
             sessionFrag.capturedPictureReceived(objectHandle, filename, thumbnail, bitmap);
         } else {
+
             Toast.makeText(this, "No thumbnail available", Toast.LENGTH_SHORT).show();
         }
     }

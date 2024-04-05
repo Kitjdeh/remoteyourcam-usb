@@ -52,7 +52,7 @@ public class NikonGetLiveViewImageCommand extends NikonCommand {
             this.data = data;
         }
         options = new BitmapFactory.Options();
-        options.inBitmap = this.data.bitmap;
+         options.inBitmap = this.data.bitmap;
         options.inSampleSize = 1;
         options.inTempStorage = tmpStorage;
         this.data.bitmap = null;

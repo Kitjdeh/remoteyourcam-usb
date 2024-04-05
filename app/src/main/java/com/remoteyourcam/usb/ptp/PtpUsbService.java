@@ -211,8 +211,6 @@ public class PtpUsbService implements PtpService {
             }
 
             if (device.getVendorId() == PtpConstants.CanonVendorId) {
-
-
                 //getObjectList(mtpDevice)
                 PtpUsbConnection connection = new PtpUsbConnection(usbManager.openDevice(device), in, out,
                         device.getVendorId(), device.getProductId());

@@ -75,6 +75,7 @@ public abstract class Command implements PtpAction {
      */
     protected void decodeData(ByteBuffer b, int length) {
         if (AppConfig.LOG) {
+            Log.w(TAG, "사진데이터가 왔음");
             Log.w(TAG, "Received data packet but handler not implemented");
         }
     }

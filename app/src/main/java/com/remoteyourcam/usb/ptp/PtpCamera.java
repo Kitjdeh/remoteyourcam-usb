@@ -1,12 +1,12 @@
 /**
  * Copyright 2013 Nils Assbeck, Guersel Ayaz and Michael Zoech
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -115,7 +115,7 @@ public abstract class PtpCamera implements Camera {
         this.connection = connection;
         this.listener = listener;
         this.workerListener = workerListener;
-        this.pictureSampleSize = 2;
+        this.pictureSampleSize = 1;
         state = State.Starting;
         vendorId = connection.getVendorId();
         productId = connection.getProductId();
@@ -123,6 +123,7 @@ public abstract class PtpCamera implements Camera {
         openSession();
         workerThread.start();
         if (AppConfig.LOG) {
+            Log.i("카메라 PtpCamera", String.valueOf(pictureSampleSize));
             Log.i(TAG, String.format("Starting session for %04x %04x", vendorId, productId));
         }
     }
@@ -267,9 +268,9 @@ public abstract class PtpCamera implements Camera {
 
     public void onPropertyDescChanged(int property, final int[] values) {
         //if (BuildConfig.LOG) {
-            Log.d(TAG,
-                    String.format("onPropertyDescChanged %s:\n%s", PtpConstants.propertyToString(property),
-                            Arrays.toString(values)));
+        Log.d(TAG,
+                String.format("onPropertyDescChanged %s:\n%s", PtpConstants.propertyToString(property),
+                        Arrays.toString(values)));
         //}
         final Integer virtual = ptpToVirtualProperty.get(property);
         if (virtual != null) {
@@ -338,7 +339,7 @@ public abstract class PtpCamera implements Camera {
     }
 
     public void onPictureReceived(final int objectHandle, final String filename, final Bitmap thumbnail,
-            final Bitmap bitmap) {
+                                  final Bitmap bitmap) {
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -556,7 +557,7 @@ public abstract class PtpCamera implements Camera {
                 } catch (InterruptedException e) {
                     // nop
                 }
-                if (action instanceof  GetObjectHandlesCommand) {
+                if (action instanceof GetObjectHandlesCommand) {
                     action = action;
                 }
                 if (action != null) {
@@ -576,7 +577,7 @@ public abstract class PtpCamera implements Camera {
                 Log.i(TAG, "handling command " + command.getClass().getSimpleName());
             }
             if (command instanceof GetObjectHandlesCommand) {
-              command = command;
+                command = command;
             }
 
             ByteBuffer b = smallIn;

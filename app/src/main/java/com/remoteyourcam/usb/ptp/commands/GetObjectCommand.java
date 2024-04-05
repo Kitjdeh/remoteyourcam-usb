@@ -43,11 +43,12 @@ public class GetObjectCommand extends Command {
         super(camera);
         this.objectHandle = objectHandle;
         options = new BitmapFactory.Options();
-        if (sampleSize >= 1 && sampleSize <= 4) {
-            options.inSampleSize = sampleSize;
-        } else {
-            options.inSampleSize = 2;
-        }
+
+//        if (sampleSize >= 1 && sampleSize <= 4) {
+//            options.inSampleSize = sampleSize;
+//        } else {
+//            options.inSampleSize = 2;
+//        }
     }
 
     public Bitmap getBitmap() {

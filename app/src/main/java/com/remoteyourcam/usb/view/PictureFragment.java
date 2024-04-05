@@ -1,12 +1,12 @@
 /**
  * Copyright 2013 Nils Assbeck, Guersel Ayaz and Michael Zoech
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,6 +18,7 @@ package com.remoteyourcam.usb.view;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -148,6 +149,7 @@ public class PictureFragment extends SessionFragment implements Camera.RetrieveI
         handler.post(new Runnable() {
             @Override
             public void run() {
+
                 if (image == null) {
                     if (inStart) {
                         Toast.makeText(getActivity(), getString(R.string.error_loading_image), Toast.LENGTH_LONG)
@@ -157,6 +159,7 @@ public class PictureFragment extends SessionFragment implements Camera.RetrieveI
                         getFragmentManager().popBackStack();
                     }
                 } else {
+                    Log.d("이미지Fragmenmt", String.valueOf(image.getAllocationByteCount()));
                     progressBar.setVisibility(View.GONE);
                     pictureView.setPicture(image);
                 }

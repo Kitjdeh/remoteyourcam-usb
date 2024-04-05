@@ -22,7 +22,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.hardware.usb.UsbDevice;
 import android.mtp.MtpDevice;
 import android.mtp.MtpObjectInfo;
 import android.mtp.MtpStorageInfo;
@@ -291,11 +290,19 @@ public class MainActivity extends SessionActivity implements CameraListener {
     @Override
     public void onCapturedPictureReceived(int objectHandle, String filename, Bitmap thumbnail, Bitmap bitmap) {
         if (thumbnail != null) {
+            Log.d(TAG, "사진 파일 생성");
+            Log.d("이미지 bitmap", String.valueOf(bitmap.getAllocationByteCount()));
+            Log.d("이미지 thumbnail", String.valueOf(thumbnail.getAllocationByteCount()));
             sessionFrag.capturedPictureReceived(objectHandle, filename, thumbnail, bitmap);
         } else {
             Toast.makeText(this, "No thumbnail available", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public Bitmap fetchBitmap(int objectHandle, String filename, Bitmap thumbnail, Bitmap bitmap) {
+        return bitmap;
+    }
+
 
     @Override
     public void onBulbStarted() {

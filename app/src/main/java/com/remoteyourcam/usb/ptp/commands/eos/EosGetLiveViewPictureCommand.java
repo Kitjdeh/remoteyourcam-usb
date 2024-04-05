@@ -18,6 +18,7 @@ package com.remoteyourcam.usb.ptp.commands.eos;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
+import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.util.Log;
@@ -36,6 +37,7 @@ public class EosGetLiveViewPictureCommand extends EosCommand {
     private final Options options;
     private LiveViewData data;
 
+    @SuppressLint("LongLogTag")
     public EosGetLiveViewPictureCommand(EosCamera camera, LiveViewData data) {
         super(camera);
         if (data == null) {
